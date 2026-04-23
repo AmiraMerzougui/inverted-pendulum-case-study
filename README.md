@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🔄 Inverted Pendulum on Cart — Control Systems Case Study
+# Inverted Pendulum on Cart — Control Systems Case Study
 
 [![MATLAB](https://img.shields.io/badge/MATLAB-R2023a%2B-orange?logo=mathworks&logoColor=white)](https://www.mathworks.com/products/matlab.html)
 [![Simulink](https://img.shields.io/badge/Simulink-R2023a%2B-blue?logo=mathworks&logoColor=white)](https://www.mathworks.com/products/simulink.html)
@@ -13,7 +13,7 @@
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
 1. [Project Overview](#-project-overview)
 2. [System Diagram](#-system-diagram)
@@ -28,13 +28,10 @@
 11. [Project Structure](#-project-structure)
 12. [Installation & Setup](#-installation--setup)
 13. [Usage](#-usage)
-14. [Contributing](#-contributing)
-15. [License](#-license)
-16. [Contact & Support](#-contact--support)
 
 ---
 
-## 🎯 Project Overview
+## Project Overview
 
 The **inverted pendulum on a cart** is one of the most studied benchmark problems in control theory. It is inherently unstable — a small perturbation will cause the pendulum to fall — making it an ideal testbed for evaluating and comparing control strategies.
 
@@ -46,11 +43,10 @@ This project provides a complete, end-to-end control systems case study includin
 - **Optimal LQR control** based on minimizing a quadratic cost function
 - **Multi-fidelity simulation** pipeline: MATLAB analytical → Simulink linear model → Simscape Multibody (3-D physics)
 
-The project is structured to support both academic learning and professional reference.
 
 ---
 
-## 🖼 System Diagram
+## System Diagram
 
 ```
            F (control force →)
@@ -81,19 +77,18 @@ The project is structured to support both academic learning and professional ref
 
 ---
 
-## ✨ Key Features
+## Key Features
 
-- 📐 **State-space representation** of linearized pendulum dynamics
-- 📊 **Open-loop analysis** — instability proof, controllability & observability checks
-- 🎛️ **Interactive PID tuner** — real-time gain adjustment with live plots and pole-zero map
-- ⚡ **LQR optimal control** — automatic gain synthesis via MATLAB `lqr()` solving the Algebraic Riccati Equation
-- 🔬 **Three simulation fidelity levels**: pure MATLAB, Simulink, and Simscape Multibody
-- 📈 **Full performance metrics** — settling time, overshoot, steady-state error, control energy
-- 🏗️ **Modular, well-commented MATLAB code** suitable for education and research
+-  **State-space representation** of linearized pendulum dynamics
+-  **Open-loop analysis** — instability proof, controllability & observability checks
+-  **Interactive PID tuner** — real-time gain adjustment with live plots and pole-zero map
+-  **LQR optimal control** — automatic gain synthesis via MATLAB `lqr()` solving the Algebraic Riccati Equation
+-  **Three simulation fidelity levels**: pure MATLAB, Simulink, and Simscape Multibody
+-  **Full performance metrics** — settling time, overshoot, steady-state error, control energy
 
 ---
 
-## 🏗 System Architecture
+##  System Architecture
 
 ### State Vector
 
@@ -121,7 +116,7 @@ The outputs are cart position `x` and pendulum angle `θ`.
 
 ---
 
-## 📏 Performance Requirements
+## Performance Requirements
 
 The control design targets the following specifications (initial condition: `θ₀ = 0.1 rad`, `θ̇₀ = 1 rad/s`):
 
@@ -135,7 +130,7 @@ The control design targets the following specifications (initial condition: `θ�
 
 ---
 
-## 🔬 Modeling Approach
+## Modeling Approach
 
 ### Nonlinear Equations of Motion
 
@@ -155,7 +150,7 @@ This yields the linear state-space model given in [System Architecture](#-system
 
 ---
 
-## 🎮 Control Strategies
+## Control Strategies
 
 ### PID Control (Classical)
 
@@ -196,14 +191,13 @@ The high weight on `θ` (`Q(3,3) = 10`) prioritizes pendulum angle stabilization
 | **Optimality** | Not guaranteed | Optimal w.r.t. cost function J |
 | **Cart position** | Drifts freely | Regulated to zero |
 | **Tuning parameters** | Kp, Ki, Kd | Weighting matrices Q, R |
-| **Robustness** | Moderate | Good (guaranteed gain margin ≥ 6 dB) |
 | **Implementation** | Simple | Requires full state measurement/estimation |
-| **Settling time** | ~2–4 s (tuned) | < 2 s (typical) |
+| **Settling time** | - | < 2 s (typical) |
 | **Overshoot** | Depends on tuning | Low (optimized) |
 
 ---
 
-## 🔭 Multi-Fidelity Simulation
+## Multi-Fidelity Simulation
 
 This project uses a three-tier simulation approach, progressively increasing physical fidelity:
 
@@ -226,36 +220,34 @@ The LQR gains designed at Level 1 are directly exported to Level 2 and Level 3 v
 
 ---
 
-## 📊 Results & Insights
+## Results & Insights
 
 ### Open-Loop Behavior
 
 The open-loop system is **unstable** — a small initial angle perturbation grows exponentially. The system has one unstable pole (positive real part) at approximately `+5.9`, confirming the need for active feedback control.
 
-### PID vs. LQR Performance
+### LQR Performance
 
-| Metric | PID (tuned) | LQR (Q=diag[1,1,10,1], R=1) |
-|--------|-------------|------------------------------|
-| Settling time (θ) | ~2–4 s | < 2 s |
-| Max overshoot (θ) | ~5–15% | < 5% |
-| Steady-state θ error | ≈ 0 rad | ≈ 0 rad |
-| Steady-state x drift | Yes (uncontrolled) | ≈ 0 m |
-| Max control force | Moderate | Moderate–High (initial transient) |
-| Control energy ∫F²dt | Higher | Lower (optimal by design) |
+| Metric | LQR (Q=diag[1,1,10,1], R=1) |
+|--------|------------------------------|
+| Settling time (θ) | < 2 s |
+| Max overshoot (θ) | < 5% |
+| Steady-state θ error | ≈ 0 rad |
+| Steady-state x drift | ≈ 0 m |
+| Max control force | Moderate–High (initial transient) |
+| Control energy ∫F²dt | Lower (optimal by design) |
 
 ### Key Takeaways
 
-- **LQR outperforms PID** on all metrics for this system because it simultaneously controls both cart position and pendulum angle with a mathematically optimal gain.
-- **PID can achieve angle stabilization** but the cart drifts without additional position feedback loop.
 - **Multi-fidelity simulation** confirms that the linear-model-designed LQR gains transfer successfully to the nonlinear Simscape model, validating the linearization assumption for small angles.
 
 ---
 
-## ⚠️ System Limitations
+## System Limitations
 
 | Limitation | Description |
 |------------|-------------|
-| **Small-angle assumption** | The linearized model is only valid for `|θ| ≲ 15°` (~0.26 rad). Large angle perturbations require the full nonlinear model. |
+| **Small-angle assumption** | The linearized model is only valid for θ ≲ 15°` (~0.26 rad). Large angle perturbations require the full nonlinear model. |
 | **No disturbance rejection** | The current designs do not include explicit disturbance observer or integral action on cart position. |
 | **Parameter sensitivity** | LQR performance degrades if physical parameters (M, m, l) deviate significantly from the values used in design. |
 | **Actuator limits** | The linear models assume unlimited force input; real implementations are saturated. |
@@ -303,7 +295,7 @@ inverted-pendulum-case-study/
 
 ---
 
-## 🛠 Installation & Setup
+## Installation & Setup
 
 ### Prerequisites
 
@@ -341,7 +333,7 @@ inverted-pendulum-case-study/
 
 ---
 
-## 🚀 Usage
+## Usage
 
 ### 1. Open-Loop Simulation
 
@@ -414,58 +406,3 @@ run('LQR_for_simulink.m')    % designs K_lqr and sets up workspace for Simulink
    sim('Simscape_Multibody_simulation')
    ```
 
----
-
-## 🤝 Contributing
-
-Contributions are welcome! To contribute:
-
-1. **Fork** the repository on GitHub.
-2. **Create a feature branch:**
-   ```bash
-   git checkout -b feature/my-improvement
-   ```
-3. **Make your changes** — keep MATLAB code style consistent (comments, section headers, variable naming).
-4. **Test your changes** by running the relevant scripts and verifying plots.
-5. **Commit** with a clear message:
-   ```bash
-   git commit -m "Add observer-based LQR with Kalman filter"
-   ```
-6. **Push** and **open a Pull Request** against `main`.
-
-### Ideas for Contributions
-
-- 🔍 State observer (Luenberger / Kalman filter) for output-feedback LQR
-- 🌀 Nonlinear MPC controller
-- 🔊 Disturbance rejection and robustness analysis
-- 📱 Real-time hardware implementation (Arduino / Raspberry Pi)
-- 🧪 Additional unit tests for parameter edge cases
-
----
-
-## 📄 License
-
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
-
-```
-MIT License — Copyright (c) 2024 Amira Merzougui
-Permission is granted, free of charge, to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software.
-```
-
----
-
-## 📬 Contact & Support
-
-**Author:** Amira Merzougui
-
-- 🐙 **GitHub:** [@AmiraMerzougui](https://github.com/AmiraMerzougui)
-- 📧 **Issues:** Please use the [GitHub Issues](https://github.com/AmiraMerzougui/inverted-pendulum-case-study/issues) tracker for bug reports and feature requests.
-
----
-
-<div align="center">
-
-*Built with ❤️ for control systems engineering education and research.*
-
-</div>
