@@ -27,6 +27,7 @@
 11. Project Structure
 12. Installation & Setup
 13. Usage
+14. References & Acknowledgements
 
 ---
 
@@ -404,3 +405,8 @@ run('LQR_for_simulink.m')    % designs K_lqr and sets up workspace for Simulink
    open_system('Simscape_Multibody_simulation.slx')
    sim('Simscape_Multibody_simulation')
    ```
+## References & Acknowledgements
+
+The mmultibody model was adapted from the following resource:
+
+- [Basics of Simscape : Soumya Kanti Mahapatra] - *[[Link to the video](https://www.youtube.com/watch?v=LcYd0goujWU)]*
