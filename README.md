@@ -4,7 +4,6 @@
 
 [![MATLAB](https://img.shields.io/badge/MATLAB-R2023a%2B-orange?logo=mathworks&logoColor=white)](https://www.mathworks.com/products/matlab.html)
 [![Simulink](https://img.shields.io/badge/Simulink-R2023a%2B-blue?logo=mathworks&logoColor=white)](https://www.mathworks.com/products/simulink.html)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Control](https://img.shields.io/badge/Control-PID%20%7C%20LQR-blueviolet)](https://en.wikipedia.org/wiki/Control_theory)
 
 **A comprehensive study of mathematical modeling, classical PID control, and optimal LQR control applied to the inverted pendulum on cart — an underactuated benchmark system in control engineering.**
@@ -256,7 +255,7 @@ The open-loop system is **unstable** — a small initial angle perturbation grow
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 inverted-pendulum-case-study/
