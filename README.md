@@ -14,19 +14,19 @@
 
 ## Table of Contents
 
-1. [Project Overview](#-project-overview)
-2. [System Diagram](#-system-diagram)
-3. [Key Features](#-key-features)
-4. [System Architecture](#-system-architecture)
-5. [Performance Requirements](#-performance-requirements)
-6. [Modeling Approach](#-modeling-approach)
-7. [Control Strategies](#-control-strategies)
-8. [Multi-Fidelity Simulation](#-multi-fidelity-simulation)
-9. [Results & Insights](#-results--insights)
-10. [System Limitations](#-system-limitations)
-11. [Project Structure](#-project-structure)
-12. [Installation & Setup](#-installation--setup)
-13. [Usage](#-usage)
+1. Project Overview
+2. System Diagram
+3. Key Features
+4. System Architecture
+5. Performance Requirements
+6. Modeling Approach
+7. Control Strategies
+8. Multi-Fidelity Simulation
+9. Results & Insights
+10. System Limitations
+11. Project Structure
+12. Installation & Setup
+13. Usage
 
 ---
 
